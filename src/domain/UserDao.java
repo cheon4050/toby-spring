@@ -1,14 +1,16 @@
-package main.java.domain;
+package domain;
+
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
 import java.sql.*;
 
 public class UserDao {
 
-    private DataSource dataSource;
+    private SimpleDriverDataSource dataSource;
     private Connection c;
     private User user;
 
-    public void setDataSource(DataSource dataSource){
+    public void setDataSource(SimpleDriverDataSource dataSource){
         this.dataSource = dataSource;
     }
     public void add(User user) throws SQLException {

@@ -8,7 +8,7 @@ public class SimpleConnectionMaker implements ConnectionMaker{
 
     @Override
     public Connection makeConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         Connection c = DriverManager.getConnection("jdbc:mysql://localhost/toby?serverTimezone=UTC", "root",
                 "root");
         return c;

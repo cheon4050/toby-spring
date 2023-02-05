@@ -1,4 +1,4 @@
-package main.java.domain;
+package domain;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 @Configuration
 public class DaoFactory {
     @Bean
-    public UserDao userDao() throws ClassNotFoundException {
+    public UserDao userDao() {
         UserDao userDao = new UserDao();
         userDao.setDataSource(dataSource());
         return userDao;
@@ -15,21 +15,14 @@ public class DaoFactory {
 
 
     @Bean
-    public DataSource dataSource() throws ClassNotFoundException {
+    public SimpleDriverDataSource dataSource() {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-
-        Class driverClass = Class.forName("(com.mysql.jdbc.Drive.class");
-
-        dataSource.setDriverClass(driverClass);
+        dataSource.setDriverClass(com.mysql.cj.jdbc.Driver.class);
         dataSource.setUrl("jdbc:mysql://localhost/toby?serverTimezone=UTC");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
 
-        return (DataSource) dataSource;
-    }
-    @Bean
-    public ConnectionMaker connectionMaker() {
-        return new SimpleConnectionMaker();
+        return dataSource;
     }
 }
 
